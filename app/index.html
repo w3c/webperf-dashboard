@@ -52,7 +52,6 @@
                 <a href="{{ html_url }}">{{ title }}</a>
               </h4>
 
-
               <div style="font-style: italic">
                 {{#if pull_request}}
                  <strong>pull request</strong> -
@@ -73,15 +72,20 @@
                 {{/if}}
                 </span>
 
+                <span> - {{ milestone.title }}</span>
+
                 {{#if labels}}
                   - {{# each labels}}
                       <span style="color: #{{color}}">{{name}}</span>
                     {{/each}}
                 {{/if}}
-
               </div>
             </div>
           {{/each}}
+        </section>
+        {{else}}
+        <section>
+          <h2>{{ name }}: <strong>ready</strong></h2>
         </section>
         {{/if}}
       {{/if}}

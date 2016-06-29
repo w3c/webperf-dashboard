@@ -52,7 +52,8 @@ function sortIssues(a, b) {
 }
 
 function getIssues(spec, cb) {
-    get('https://api.github.com/repos/' + spec.repo + '/issues').then(
+    get('https://api.github.com/repos/' + spec.repo +
+        '/issues?milestone=' + spec.mid).then(
         function(response) {
             spec.issues = JSON.parse(response).sort(sortIssues);
             cb(spec);
@@ -112,20 +113,16 @@ var template = Handlebars.compile(source);
 
 
 var specs = [
-  {name: 'Resource Hints', repo: 'w3c/resource-hints'},
-  {name: 'Navigation Timing', repo: 'w3c/navigation-timing' },
-  {name: 'Resource Timing', repo: 'w3c/resource-timing'},
-  {name: 'Performance Timeline', repo: 'w3c/performance-timeline'},
-  {name: 'Frame Timing', repo: 'w3c/frame-timing'},
-  {name: 'Page Visibility', repo: 'w3c/page-visibility'},
-  {name: 'Beacon', repo: 'w3c/beacon'},
-  {name: 'User Timing', repo: 'w3c/user-timing'},
-  {name: 'Network Error Logging', repo: 'w3c/network-error-logging'},
-  {name: 'Preload', repo: 'w3c/preload'},
-  {name: 'High Resolution Time', repo: 'w3c/hr-time'},
-  {name: 'Animation Timing', repo: 'w3c/animation-timing'},
-  {name: 'Server Timing', repo: 'w3c/server-timing'},
-  {name: 'requestIdleCallback', repo: 'w3c/requestidlecallback'}
+  {name: 'High Resolution Time', repo: 'w3c/hr-time', mid: '1'},
+  {name: 'Performance Timeline', repo: 'w3c/performance-timeline', mid: '2'},
+  {name: 'Resource Timing', repo: 'w3c/resource-timing', mid: '2'},
+  {name: 'Navigation Timing', repo: 'w3c/navigation-timing', mid: '1' },
+  {name: 'User Timing', repo: 'w3c/user-timing', mid: '1'},
+  {name: 'Page Visibility', repo: 'w3c/page-visibility', mid: '2'},
+  {name: 'Beacon', repo: 'w3c/beacon', mid: '1'},
+  {name: 'requestIdleCallback', repo: 'w3c/requestidlecallback', mid: '1'},
+  {name: 'Resource Hints', repo: 'w3c/resource-hints', mid: '1'},
+  {name: 'Preload', repo: 'w3c/preload', mid: '1'}
 ]
 
 specs.forEach(function(spec){
